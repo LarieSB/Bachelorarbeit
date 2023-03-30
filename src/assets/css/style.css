@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import "https://cdn.formk.it/web-assets/multistep-form.css";
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --body-color: #E4E9F7;
+    --sidebar-color : #FFF;
+    --primary-color: #695cfe;
+    --primary-color-light: #F6F5FF;
+    --text-color: #707070;
+    --toggle-color: #dcdcdc;
+
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+body.dark{
+    --body-color: #18191A;
+    --sidebar-color : #242526;
+    --primary-color: #3A3B3C;
+    --primary-color-light: #3A3B3C;
+    --text-color: #FFF !important;
+    --toggle-color: #CCC;
+}
+
+.nav-link a{
+    display: flex;
+}
+.dashboard{
+    width: 100%;
+}
+.formkit-option .formkit-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.textfelddiv{
+    margin-bottom: 15px;
+}
+.nav-link a.active{
+    color: #008CBA !important; 
+}
+.menu-links{
+    width: 16rem;
+}
+
+.formkit-form{
+    max-width: 100% !important;
+    padding: 2em;
+}
+
+.formkit-message{
+    font-size: 12px;
+    color: rgb(250, 77, 77);
+}
+
+input[type="text"], input[type="date"], 
+input[type="number"], input[type="month"]{
+    border: 1px solid #ccccd7;
+    padding: 0 10px;
+    height: 45px;
+    border-radius: 6px;
+    width: 100%;
+    outline: none;
+}
+
+textarea, select{
+    border: 1px solid #ccccd7;
+    width: 100%;
+    border-radius: 6px;
+    padding: 5px 10px;
+    outline: none;
+}
+select{
+    height: 45px;
+}
+.nav-link a{
+    gap: 8px;
+    align-items: center;
+}
+
+ .formkit-wrapper button{
+  background-color: #008CBA; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  }  
+  .weiter{
+    background-color: #008CBA; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  }
+ .foo{
+  display: inline-block;
+  width: 320px;
+  height: 50px;
+  color: #008CBA;
+  text-align: center;
+  border: 4px double #008CBA; /* add this line */
+  border-radius: 10px;
+ } 
+ 
+  .modal-container{
+    max-height: 95vh;
+    overflow-y: hidden;
+    overflow-y: scroll !important;
+  }
+
+  
+
+  ::-webkit-scrollbar-track{
+    background-color: #008CBA;
+  }
+
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }

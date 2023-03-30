@@ -50,33 +50,11 @@ console.log("ici", store2)
 <label for="betroffenen_Personen1">Personenbezogene identifizierende Daten<span class="text-red-300">*</span></label>
  <br>
  <button class="foo bar" type="button" @click="viewModal1 = true">add new identifizierende Daten</button>
-<table>
-        <tr>
-          <th>#</th>
-          <th>Bezeichnung</th>
-          <th>Begründung</th>
-          <th>Woher stammen die Daten</th>
-          <th>Woher stammen die Daten</th>
-          <th>Remove</th>
-        </tr>
-        <tr v-for="(item, index) in storeIDDaten.get_iDDaten" :key="index">
-          <td>{{ index + 1 }}</td>
-          <td>{{ item.Bezeichnung }}</td>
-          <td>{{ item.Begründung }}</td>
-          <td>{{ item.Woher_stammen_die_Daten }}</td>
-          <td>{{ item.Wer_erhebt}}</td>
-          
-          <td>
-            <button type="button" @click="storeIDDaten.remove_iDDaten(index)">X</button>
-          </td>
-        </tr>
 
-      </table> 
 <Modal :show="viewModal1" @close="viewModal1 = false">
  <add_id_Daten/>
 </Modal>
- <br>  
- 
+ <br>   
 <br>
 <br>
 <label for="betroffenen_Personen1">Nicht-Identifizierende Daten<span class="text-red-300">*</span></label>
@@ -87,7 +65,6 @@ console.log("ici", store2)
  <add_nicht_id_Daten/>
 </Modal>
 <br>
-
 <br>
 <br>
 <label for="betroffenen_Personen1">Externe Daten<span class="text-red-300">*</span></label>
@@ -98,8 +75,7 @@ console.log("ici", store2)
 <Modal :show="viewModal3" @close="viewModal3 = false">
  <Add_externe_Daten/>
 </Modal>
-<br> 
-
+<br>  
 <br>  
 <FormKit type="button" @click="SubmitForm" label="Speichern und weiter" />
    

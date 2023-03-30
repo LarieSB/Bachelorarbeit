@@ -13,6 +13,7 @@ import {useInstitution} from '@/store';
 
 const store = useInstitution()
 // store.set_NichtidDaten(value)
+console.log("ici", store)
 
 
 
@@ -37,6 +38,8 @@ const state = reactive ({
 const SubmitForm = () => {
   store.set_institution(state)
 }
+
+console.log("state", state)
 
 const Fachabteilung = [
   { label: 'Herzchirurgie', value: 'Herzchirurgie' },
@@ -212,7 +215,11 @@ const Schwerpunkt = [
     </div>
     <br>
     <FormKit type="button" @click="SubmitForm" label="Submit Application" />
-    
+    <div>
+    <h2>Erfolgreich übermittelt</h2>
+    <button type="button" >Weiter</button>
+    <!-- {{ store. }} -->
+    </div> 
     
 </FormKit>  
 </template>

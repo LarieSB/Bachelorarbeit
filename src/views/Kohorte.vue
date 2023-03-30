@@ -10,6 +10,9 @@ import { camel2title, axios } from '@/_helpers/utils.js'
 import useSteps from '@/_helpers/useSteps.js'
 import { ref, reactive } from 'vue'
 import {useKohorte} from '@/store';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const store = useKohorte()
 // store.set_Kohorte(value)
@@ -35,6 +38,10 @@ const state = reactive ({
 })
 
 const SubmitForm = () => {
+  console.log(router)
+  if(store.status === false){
+    router.push({name: 'Benoetigte Daten'})
+  }
   store.set_kohorte(state)
 }
 

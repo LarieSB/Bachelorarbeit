@@ -7,7 +7,9 @@
 import { FormKit } from '@formkit/vue';
 import { ref, reactive } from 'vue'
 import {useNutzungsordnung} from '@/store';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const store = useNutzungsordnung()
 
 const date_rule = [['date_before', new Date(Date.now())]]
@@ -18,9 +20,14 @@ const state = reactive ({
 })
 
 const SubmitForm = () => {
+  console.log(router)
+  if(store.status === false){
+    router.push({name: 'Impressum'})
+  }
   store.set_nutzungsordnung(state)
-  console.log("state", state)
+  
 }
+console.log("state", state)
 
 const dataNutzungsordnung = localStorage.getItem('nutzungsordnung')
 const jsonO = JSON.parse(dataNutzungsordnung)
@@ -45,11 +52,11 @@ const jsonO = JSON.parse(dataNutzungsordnung)
   </div>
   <br>
     <FormKit type="button" @click="SubmitForm" label="Submit Application"/>
-<br><br>
+<!-- <br><br>
     <router-link exact :to="{ name: 'Impressum' }" href="#" class="weiter" >Formulare Exportieren</router-link>
     <div>
    
-    <!-- {{ store. }} -->
-    </div>
+     {{ store. }} 
+    </div> -->
   </FormKit>
 </template>

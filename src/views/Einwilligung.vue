@@ -10,7 +10,9 @@ import { camel2title, axios } from '@/_helpers/utils.js'
 import useSteps from '@/_helpers/useSteps.js'
 import { ref, reactive } from 'vue'
 import {useEinwilligung} from '@/store';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const store = useEinwilligung()
 // store.set_Einwilligung(value)
 console.log("ici", store)
@@ -28,6 +30,10 @@ const state = reactive ({
 })
 
 const SubmitForm = () => {
+  console.log(router)
+  if(store.status === false){
+    router.push({name: 'Rechnung_und_Finanzierung'})
+  }
   store.set_einwilligung(state)
 }
 

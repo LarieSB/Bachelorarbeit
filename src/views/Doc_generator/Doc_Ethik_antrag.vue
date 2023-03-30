@@ -4,22 +4,22 @@
     <div class="shadow px-4 py-6 mt-12">
         <h2 class="text-2xl flex justify-between">
             <span>Antragsformular für Studien nach Berufsordnung (“Sonstige Studien“) </span>
-            <button class="border border-blue-500 px-4 py-2  rounded text-sm" @click="generatePdf" >PDF Download</button>
-            <button class="border border-blue-500 px-4 py-2 rounded text-sm" @click="downloadDoc"> Word Download</button>
+            <button class="border border-blue-500 bg-sky-500 text-white px-4 py-2  rounded text-sm" @click="generatePdf" >PDF Download</button>
+            <button class="border border-blue-500 bg-sky-500 text-white px-4 py-2 rounded text-sm" @click="downloadDoc"> Word Download</button>
         </h2><br />
         <div ref="Content" class="allgemeine border-b border-b-zinc-300 py-2">
             <h2 class="text-xl flex justify-between">
                 <span>Antragsformular für Studien nach Berufsordnung (“Sonstige Studien“)</span>                
             </h2><br>
-            <p>1. Vollständiger Titel der Studie (lt. Studienprotokoll): <br>
+            <p>1.  Vollständiger Titel der Studie (lt. Studienprotokoll): <br>
             {{jsonAllgemeine.Projekttitel}}</p> 
-            <p>2.Es handelt sich um: <br>
+            <p>2. Es handelt sich um: <br>
              {{jsonAllgemeine.Art_der_Einreichung}} </p>
             <p>3. Es handelt sich um eine {{jsonCharakterisierung.Studientyp_örtlich}} Studie</p>
            <p> Es handelt sich um eine rein retrospektive Datenerhebung: {{jsonCharakterisierung.rein_retrospektive_Datenerhebung}} </p>
-            <p>4.Beteiligte Personnen</p>
+            <p>4. Beteiligte Personnen</p>
             <p>{{jsonBeteiligte}}</p>
-            <h3>5.Beteiligte Institutionen</h3>
+            <h3>5. Beteiligte Institutionen</h3>
             <p>{{jsonBeteiligte.Beteiligte_Institution}}</p>
             <h3>6.	Geplanter Studienbeginn und voraussichtliches Studienende, inkl. Nachbeobachtungs- und Auswertungszeitraum: </h3>
             <p>Von {{jsonAllgemeine.Geplanter_Studienbeginn}} bis {{jsonAllgemeine.voraussichtliches_Studienende}}</p>
@@ -52,6 +52,8 @@
             
         </div>
     </div>
+    <br><br>
+    <router-link exact :to="{ name: 'Impressum' }" href="#" class="weiter" >Zurück</router-link>
 </template>
 <script>
 import pdfMake from "pdfmake/build/pdfmake";

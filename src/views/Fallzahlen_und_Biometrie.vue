@@ -10,6 +10,9 @@ import { camel2title, axios } from '@/_helpers/utils.js'
 import useSteps from '@/_helpers/useSteps.js'
 import { ref, reactive } from 'vue'
 import {useFallzahlen} from '@/store';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const store = useFallzahlen()
 // store.set_Fallzahlen(value)
@@ -34,6 +37,10 @@ const state = reactive ({
 })
 
 const SubmitForm = () => {
+  console.log(router)
+  if(store.status === false){
+    router.push({name: 'Kohorte'})
+  }
   store.set_fallzahlen(state)
 }
 

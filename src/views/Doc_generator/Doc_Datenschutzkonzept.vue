@@ -5,8 +5,8 @@
     <div class="shadow px-4 py-6 mt-12">
         <h2 class="text-2xl flex justify-between">
             <span>Datenschutzkonzept</span>
-            <button class="border border-blue-500 px-4 py-2 rounded text-sm" @click="generatePdf" >PDF Download</button>
-            <button class="border border-blue-500 px-4 py-2 rounded text-sm" @click="downloadDoc"> Word Download</button>
+            <button class="border border-blue-500 bg-sky-500 text-white px-4 py-2 rounded text-sm" @click="generatePdf" >PDF Download</button>
+            <button class="border border-blue-500 bg-sky-500 text-white px-4 py-2 rounded text-sm" @click="downloadDoc"> Word Download</button>
         </h2><br />
         <div ref="Content" class="allgemeine border-b border-b-zinc-300 ">
             <h2 class="text-xl flex justify-between">
@@ -317,6 +317,8 @@ Alle am Forschungsvorhaben beteiligten Personen sind mit dem Dokument „<strong
 
         </div>
     </div>
+    <br><br>
+    <router-link exact :to="{ name: 'Impressum' }" href="#" class="weiter" >Zurück</router-link>
 </template>
 <script>
 import pdfMake from "pdfmake/build/pdfmake";

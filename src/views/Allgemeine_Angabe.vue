@@ -52,7 +52,7 @@ const state = reactive({
 const SubmitForm = () => {
   console.log(router)
   if(store.status === false){
-    router.push({name: 'add_id_Daten'})
+    router.push({name: 'Charakterisierung_der_Studie'})
   }
   store.set_allgemeine(state)
 }
@@ -63,9 +63,9 @@ const SubmitForm = () => {
   <h1>Allgemeine Angaben</h1>
 
   <FormKit type="form" class="btn" #default="{ value }" :actions="false">
-    <h1 class="text-2xl text-green-700 text-center" v-if="store.status"><strong>!!!!Soumission reussie</strong></h1>
-    <!-- .form-body solely for styling -->
-    <div v-if="!store.status">
+    <!-- <h1 class="text-2xl text-green-700 text-center" v-if="store.status"><strong>!!!!Soumission reussie</strong></h1>
+    .form-body solely for styling 
+    <div v-if="!store.status"> -->
       <div class="grid md:grid-cols-2 gap-10 mb-4">
         <div class="textfelddiv">
           <label for="Ort">Ort <span class="text-red-300">*</span></label>
@@ -191,7 +191,7 @@ const SubmitForm = () => {
 
 
       <FormKit type="button" @click="SubmitForm" label="Speichern und weiter" />
-    </div>
+    <!-- </div> -->
 </FormKit></template>
 <style></style>
 

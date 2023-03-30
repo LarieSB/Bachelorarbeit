@@ -4,9 +4,8 @@
     <div class="shadow px-4 py-6 mt-12">
         <h2 class="text-2xl flex justify-between">
             <span>DIZ-antrag</span>
-            <button class="border border-blue-500 px-4 py-2 rounded text-sm" @click="generatePdf" >PDF Download</button>
-            
-            <button class="border border-blue-500 px-4 py-2 rounded text-sm" @click="downloadDoc"> Word Download</button>
+            <button class="border border-blue-500 bg-sky-500 text-white px-4 py-2 rounded text-sm" @click="generatePdf" >PDF Download</button>
+            <button class="border border-blue-500 bg-sky-500 text-white px-4 py-2 rounded text-sm" @click="downloadDoc"> Word Download</button>
         </h2><br />
         <div ref="Content" class="allgemeine border-b border-b-zinc-300 py-2">
             <h2 class="text-xl flex justify-between">
@@ -47,64 +46,10 @@ Referenzantrag:	{{jsonAllgemeine.Referenzantrag}}<br><br>
 
 Beteiligte Institutionen:<br><br>
 {{jsonInstitution.institution}} <br><br>
-<!-- <table>
-  <tr>
-    <th>#</th> 
-    <th>Name</th>    
-    <th>Telefonnummer</th>
-    <th>Adresse</th>
-    <th>Abteilung</th>
-    <th>Fachabteilung</th>
-    <th>Sonstige Fachabteilung</th>
-    <th>Schwerpunkt</th>
-    <th>Sonstige Schwerpunkt</th>
-    
-  </tr>
-  <tr >
-    <td>{{ index + 1 }}</td> 
-    <td>{{ jsonBeteiligte.institution.name }}</td>    
-    <td>{{ jsonBeteiligte.institution.Telefonnummer }}</td>
-    <td>{{ jsonBeteiligte.institution.Straße2 }},{{ jsonBeteiligte.institution.Postleitzahl2 }} {{ jsonBeteiligte.institution.Ort2 }}</td>
-    <td>{{ jsonBeteiligte.institution.Abteilung }}</td>
-    <td>{{ jsonBeteiligte.institution.Fachabteilung }}</td>
-    <td>{{ jsonBeteiligte.institution.Sonstige_Fachabteilung }}</td>
-    <td>{{ jsonBeteiligte.institution.Schwerpunkt }}</td>    
-    <td>{{ jsonBeteiligte.institution.Sonstige_Schwerpunkt }}</td>
-    
-    
-  </tr>
-  
-</table> -->
+
 
 Beteiligte Personen<br><br>
-<!-- <table>
-  <tr>
-    <th>#</th>
-    <th>Funktion_im_Projekt</th>
-    <th>Akademischer_Titel</th>
-    <th>Vorname</th>
-    <th>Nachname</th>
-    <th>E_Mail</th>
-    <th>Telefonnummer</th>
-    <th>Institution</th>
-    <th>Abteilung</th>
-    <th>Funktion_in_der_Abteilung</th>
-  </tr>
-  <tr >  -->
-    <!-- <td>{{ index + 1 }}</td> -->
-    <!-- <td>{{ jsonBeteiligte.user.Funktion_im_Projekt }}</td>
-    <td>{{ jsonBeteiligte.user.Akademischer_Titel }}</td>
-    <td>{{ jsonBeteiligte.user.Vorname }}</td>
-    <td>{{ jsonBeteiligte.user.Nachname }}</td>
-    <td>{{ jsonBeteiligte.user.E_Mail }}</td>
-    <td>{{ jsonBeteiligte.user.Telefonnummer }}</td>
-    <td>{{ jsonBeteiligte.user.Institution }}</td>
-    <td>{{ jsonBeteiligte.user.Abteilung }}</td>
-    <td>{{ jsonBeteiligte.user.Funktion_in_der_Abteilung }}</td>
-    
-  </tr>
-  
-</table> -->
+
 {{jsonBeteiligte.user}}<br><br>
 <br>
 Projektlaufzeit: {{jsonAllgemeine.Projektlaufzeit}} Monat(e)<br><br>
@@ -135,6 +80,8 @@ Nutzungsordnung:	{{jsonNutzungsordnung.Nutzungsordnung}}
             
         </div>
     </div>
+    <br><br>
+    <router-link exact :to="{ name: 'Impressum' }" href="#" class="weiter" >Zurück</router-link>
 </template>
 <script>
 import pdfMake from "pdfmake/build/pdfmake";

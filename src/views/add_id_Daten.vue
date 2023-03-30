@@ -10,7 +10,9 @@ import { camel2title, axios } from '@/_helpers/utils.js'
 import useSteps from '@/_helpers/useSteps.js'
 import { ref, reactive } from 'vue'
 import {useIDDaten} from '@/store';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const store = useIDDaten()
 // store.set_ExterneDaten(value)
 console.log("ici", store)
@@ -30,6 +32,10 @@ const state = reactive ({
 })
 
 const SubmitForm = () => {
+  console.log(router)
+  if(store.status === false){
+    router.push({name: 'Benoetigte Daten'})
+  }
   store.set_iDDaten(state)
 }
 
@@ -93,10 +99,6 @@ console.log("state", state)
     </div>
     <br>
     <FormKit type="button" @click="SubmitForm" label="Submit Application" />
-    <div>
-    <h2>Erfolgreich übermittelt</h2>
-    <button type="button" >Weiter</button>
-    <!-- {{ store. }} -->
-    </div> 
+    
 </FormKit>  
 </template>

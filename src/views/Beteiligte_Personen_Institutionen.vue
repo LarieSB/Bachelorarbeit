@@ -13,6 +13,9 @@ import add_institution from './add_institution.vue';
 import Modal from './Modal.vue';
 import { ref, reactive } from 'vue'
 import {useBeteiligte} from '@/store';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const store = useBeteiligte()
 // store.set_Beteiligte(value)
@@ -40,6 +43,10 @@ const state = reactive ({
 })
 
 const SubmitForm = () => {
+  console.log(router)
+  if(store.status === false){
+    router.push({name: 'Wissenschaftlicher_Hintergrund_und_Ziele'})
+  }
   store.set_beteiligte(state)
 }
 

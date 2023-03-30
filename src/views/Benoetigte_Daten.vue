@@ -16,6 +16,9 @@ import {useIDDaten} from '@/store';
 import {useNichtidDaten} from '@/store';
 import {useExterneDaten} from '@/store';
 import Modal from './Modal.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const date_rule = [['date_before', new Date(Date.now())]]
 // NEW: submit handler, which posts to our fake backend.
@@ -35,6 +38,15 @@ console.log("ici", store1)
 const store2 = useExterneDaten()
 // store.set_Einwilligung(value)
 console.log("ici", store2)
+
+const SubmitForm = () => {
+  console.log(router)
+  if(store.status === false){
+    router.push({name: 'Einwilligung'})
+  }
+  // store.set_beteiligte(state)
+}
+// console.log("state", state)
 
 </script>
 

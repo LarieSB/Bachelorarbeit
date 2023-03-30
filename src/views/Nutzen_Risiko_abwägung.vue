@@ -10,7 +10,9 @@ import { camel2title, axios } from '@/_helpers/utils.js'
 import useSteps from '@/_helpers/useSteps.js'
 import { ref, reactive } from 'vue'
 import {useNutzenRisiko} from '@/store';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const store = useNutzenRisiko()
 // store.set_NutzenRisiko(value)
 console.log("ici", store)
@@ -36,6 +38,10 @@ const Forschungdaten_in_den_Behandlungskontext = [
   { label: 'Nein', value: 'Keine' }
 ]
 const SubmitForm = () => {
+  console.log(router)
+  if(store.status === false){
+    router.push({name: 'Datenschutz_massnahmen'})
+  }
   store.set_nutzenRisiko(state)
 }
 

@@ -10,7 +10,9 @@ import { camel2title, axios } from '@/_helpers/utils.js'
 import useSteps from '@/_helpers/useSteps.js'
 import { ref, reactive } from 'vue'
 import {useDatenschutz} from '@/store';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const store = useDatenschutz()
 // store.set_Datenschutz(value)
 console.log("ici", store)
@@ -30,6 +32,10 @@ const state = reactive ({
 })
 
 const SubmitForm = () => {
+  console.log(router)
+  if(store.status === false){
+    router.push({name: 'Nutzungsordnung'})
+  }
   store.set_datenschutz(state)
 }
 

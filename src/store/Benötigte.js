@@ -15,13 +15,14 @@ export const useBenötigte = defineStore({
     },
     actions: {
         set_benötigte(benötigte) {
-            this.status = true
+           
             this.Benötigte = benötigte;
-            //  localStorage.setItem('benötigte', JSON.stringify(benötigte)).then(()=>{
-            //     this.status = false
-            console.log(this.router)
+            localStorage.setItem('benötigte', JSON.stringify(benötigte))
+                this.status = true
+           
              
-            //  })
+            
         }
-    } 
+    }
+     
 });

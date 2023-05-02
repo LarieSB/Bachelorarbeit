@@ -15,9 +15,6 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 
 const store = useHintergrund()
-// store.set_Charakterisierung(value)
-console.log("ici", store)
-
 
 
 const date_rule = [['date_before', new Date(Date.now())]]

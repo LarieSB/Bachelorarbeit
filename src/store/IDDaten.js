@@ -5,7 +5,7 @@ export const useIDDaten = defineStore({
     id: 'iDDaten',
     state: () => ({
         IDDaten: {},
-        status: false,
+        // status: false,
         router: useRouter()
     }),
     getters: {
@@ -15,13 +15,25 @@ export const useIDDaten = defineStore({
     },
     actions: {
         set_iDDaten(iDDaten) {
-            this.status = true
-            this.iDDaten = iDDaten;
-             localStorage.setItem('iDDaten', JSON.stringify(iDDaten)).then(()=>{
-                this.status = false
+            const data = JSON.parse(localStorage.getItem('IDDaten'))
+            if (data) {
+                this.IDDaten = [...new Set([...data, ...[iDDaten]])]
+            } else {
+                console.log('data is null', iDDaten)
+                this.IDDaten = [iDDaten]
+            }
+            localStorage.setItem('IDDaten', JSON.stringify(this.IDDaten))
             console.log(this.router)
-             
-             })
+        },
+
+        async removeIDDaten(index){
+            this.IDDaten.splice(index, 1)
+            localStorage.setItem('IDDaten', JSON.stringify(this.IDDaten))
         }
-    } 
+    } ,
+
+    persist: {
+        enabled: true,
+    }
+  
 });

@@ -5,9 +5,6 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
 import { FormKit } from '@formkit/vue';
-import { FormKitIcon } from '@formkit/vue'
-import { camel2title, axios } from '@/_helpers/utils.js'
-import useSteps from '@/_helpers/useSteps.js'
 import { ref, reactive } from 'vue'
 import {useFallzahlen} from '@/store';
 import { useRouter } from 'vue-router';
@@ -15,8 +12,6 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 
 const store = useFallzahlen()
-// store.set_Fallzahlen(value)
-console.log("ici", store)
 
 
 
@@ -44,7 +39,7 @@ const SubmitForm = () => {
   store.set_fallzahlen(state)
 }
 
-console.log("state", state)
+
 </script>
 
 <template>

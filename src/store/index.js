@@ -1,6 +1,7 @@
 export * from './Allgemeine'
 export * from './Charakterisierung'
 export * from './Beteiligte'
+export * from './Benötigte'
 export * from './Hintergrund'
 export * from './Fallzahlen'
 export * from './Kohorte'

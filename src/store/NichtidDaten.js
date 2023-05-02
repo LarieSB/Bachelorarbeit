@@ -5,7 +5,7 @@ export const useNichtidDaten = defineStore({
     id: 'nichtidDaten',
     state: () => ({
         NichtidDaten: {},
-        status: false,
+        // status: false,
         router: useRouter()
     }),
     getters: {
@@ -15,13 +15,26 @@ export const useNichtidDaten = defineStore({
     },
     actions: {
         set_nichtidDaten(nichtidDaten) {
-            this.status = true
-            this.nichtidDaten = nichtidDaten;
-             localStorage.setItem('nichtidDaten', JSON.stringify(nichtidDaten)).then(()=>{
-                this.status = false
-            console.log(this.router)
-             
-             })
+            const data = JSON.parse(localStorage.getItem('nichtidDaten'))
+                if (data) {
+                    this.NichtidDaten = [...new Set([...data, ...[nichtidDaten]])]
+                } else {
+                    console.log('data is null', nichtidDaten)
+                    this.NichtidDaten = [nichtidDaten]
+                }
+                console.log(this.NichtidDaten)
+                localStorage.setItem('nichtidDaten', JSON.stringify(this.NichtidDaten))
+            },
+    
+            async removeNichtidDaten(index){
+                this.NichtidDaten.splice(index, 1)
+                localStorage.setItem('nichtidDaten', JSON.stringify(this.NichtidDaten))
+                console.log(this.router)
+            }
+        },
+    
+        persist: {
+            enabled: true,
         }
-    } 
+                
 });

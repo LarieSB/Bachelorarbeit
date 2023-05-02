@@ -14,8 +14,6 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter()
 const store = useRechnung()
-// store.set_Rechnung(value)
-console.log("ici", store)
 
 
 

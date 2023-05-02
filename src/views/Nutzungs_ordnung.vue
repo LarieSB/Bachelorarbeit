@@ -52,11 +52,6 @@ const jsonO = JSON.parse(dataNutzungsordnung)
   </div>
   <br>
     <FormKit type="button" @click="SubmitForm" label="Submit Application"/>
-<!-- <br><br>
-    <router-link exact :to="{ name: 'Impressum' }" href="#" class="weiter" >Formulare Exportieren</router-link>
-    <div>
-   
-     {{ store. }} 
-    </div> -->
+
   </FormKit>
 </template>

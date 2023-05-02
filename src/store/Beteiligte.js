@@ -19,7 +19,6 @@ export const useBeteiligte = defineStore({
             this.Beteiligte = beteiligte;
              localStorage.setItem('beteiligte', JSON.stringify(beteiligte)).then(()=>{
                 this.status = false
-            console.log(this.router)
         })
     }
 } 

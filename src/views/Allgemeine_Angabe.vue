@@ -2,15 +2,13 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
 import { FormKit } from '@formkit/vue';
-import { axios } from '@/_helpers/utils.js'
-import useSteps from '@/_helpers/useSteps.js'
 import { ref, reactive } from 'vue'
 import { useAllgemeine } from '@/store';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
 const store = useAllgemeine()
-// store.set_allgemeine(value)
+
 
 
 const date_rule = [['date_before', new Date(Date.now())]]
@@ -63,9 +61,7 @@ const SubmitForm = () => {
   <h1>Allgemeine Angaben</h1>
 
   <FormKit type="form" class="btn" #default="{ value }" :actions="false">
-    <!-- <h1 class="text-2xl text-green-700 text-center" v-if="store.status"><strong>!!!!Soumission reussie</strong></h1>
-    .form-body solely for styling 
-    <div v-if="!store.status"> -->
+   
       <div class="grid md:grid-cols-2 gap-10 mb-4">
         <div class="textfelddiv">
           <label for="Ort">Ort <span class="text-red-300">*</span></label>
@@ -187,11 +183,9 @@ const SubmitForm = () => {
             validation="required" />
         </div>
       </div>
-      <!-- NEW: Adds Next / Previous navigation buttons. -->
 
 
       <FormKit type="button" @click="SubmitForm" label="Speichern und weiter" />
-    <!-- </div> -->
+    
 </FormKit></template>
-<style></style>
 

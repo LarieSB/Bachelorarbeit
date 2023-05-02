@@ -1,27 +1,35 @@
 import { defineStore } from 'pinia'
-import { useRouter } from 'vue-router';
 
 export const useInstitution = defineStore({
     id: 'institution',
     state: () => ({
-        Institution: {},
-        status: false,
-        router: useRouter()
+        institution: [],
     }),
     getters: {
         get_institution(state) {
-            return state.Institution;
+            let dataInstitution = localStorage.getItem('institution')
+            state.institution = JSON.parse(dataInstitution);
+            return state.institution;
         }
     },
     actions: {
         set_institution(institution) {
-            this.status = true
-            this.institution = institution;
-             localStorage.setItem('institution', JSON.stringify(institution)).then(()=>{
-                this.status = false
-            console.log(this.router)
-             
-             })
+            if(localStorage.getItem('institution')){
+                let dataInstitution = JSON.parse(localStorage.getItem('institution') || '[]')
+                this.institution = [institution, ...dataInstitution]
+                localStorage.setItem('institution', JSON.stringify( this.institution))
+            }else{
+                localStorage.setItem('institution', JSON.stringify([institution]))
+                this.institution = [institution]
+            }
+            
+            console.log(this.institution)
+        },
+        remove_institution(index){
+            let dataInstitution = JSON.parse(localStorage.getItem('institution') || '[]')
+            dataInstitution.splice(index, 1)
+            localStorage.setItem('institution', JSON.stringify(dataInstitution))
+            this.institution = dataInstitution
         }
     } 
 });

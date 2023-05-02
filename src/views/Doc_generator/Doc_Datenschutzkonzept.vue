@@ -100,7 +100,7 @@ Theodor-Stern-Kai 7 <br>
 <h2>2.4 Organisatorische Abhängigkeiten</h2><br>
 <h3>2.4.1 Forschungsteam</h3><br>
 
-<table>
+<table class= "border">
   <tr>
     <tr>
     <th>Name</th>
@@ -150,7 +150,7 @@ Das Forschungsinteresse für die Beantwortung der {{jsonHintergrund.Fragestellun
 {{jsonNichtidDaten}} <br>
 <br>
 {{jsonExterneDaten}}</p> <br>
-Bei den Personen handelt es sich um {{jsonKohorte.betroffenen_Personen2}} im Sinne der EU-DSGVO. 
+<p> Bei den Personen handelt es sich um <p v-for="(item, index) in jsonKohorte.betroffenen_Personen2" :key="index">{{item}}</p> im Sinne der EU-DSGVO. </p>
 <br>
 <h4>3.2.2 Kohorte und Ein- und Ausschlusskriterien</h4>
 <p>Die Kohorte ist folgendermaßen definiert: <br>

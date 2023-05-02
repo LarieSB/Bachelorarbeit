@@ -12,15 +12,25 @@
                 <span>Antragsformular für Studien nach Berufsordnung (“Sonstige Studien“)</span>                
             </h2><br>
             <p>1.  Vollständiger Titel der Studie (lt. Studienprotokoll): <br>
-            {{jsonAllgemeine.Projekttitel}}</p> 
+            {{jsonAllgemeine?.Projekttitel}}</p> 
             <p>2. Es handelt sich um: <br>
              {{jsonAllgemeine.Art_der_Einreichung}} </p>
             <p>3. Es handelt sich um eine {{jsonCharakterisierung.Studientyp_örtlich}} Studie</p>
            <p> Es handelt sich um eine rein retrospektive Datenerhebung: {{jsonCharakterisierung.rein_retrospektive_Datenerhebung}} </p>
             <p>4. Beteiligte Personnen</p>
-            <p>{{jsonBeteiligte}}</p>
+            <div>
+                <p v-for="(item, index) in jsonBeteiligte.Funktion_im_Projekt" :key="index">{{item}}</p>
+                <p>{{jsonBeteiligte.Akademischer_Titel}}</p>
+                <p>{{jsonBeteiligte.Vorname}} </p>
+                <p>{{jsonBeteiligte.Nachname}}</p>
+                <p>{{jsonBeteiligte.E_Mail}}</p>
+                <p>{{jsonBeteiligte.Telefonnummer}}</p>
+                <p>{{jsonBeteiligte.Institution}}</p>
+                <p>{{jsonBeteiligte.Abteilung}}</p>
+                <p>{{jsonBeteiligte.Funktion_in_der_Abteilung}} </p>                
+            </div>
             <h3>5. Beteiligte Institutionen</h3>
-            <p>{{jsonBeteiligte.Beteiligte_Institution}}</p>
+            <p v-for="(item, index) in jsonInstitution" :key="index">{{item}}</p>
             <h3>6.	Geplanter Studienbeginn und voraussichtliches Studienende, inkl. Nachbeobachtungs- und Auswertungszeitraum: </h3>
             <p>Von {{jsonAllgemeine.Geplanter_Studienbeginn}} bis {{jsonAllgemeine.voraussichtliches_Studienende}}</p>
             <h3>7.	Die erfassten Daten stammen aus dem folgenden Zeitraum (retrospektiv) bzw. werden im folgenden Zeitraum erhoben (prospektiv):  </h3>
@@ -32,7 +42,7 @@
              <h3>10. Handelt es sich um eine Studie mit studienbedingter Strahlenbelastung? </h3>
              <p>{{jsonCharakterisierung.studienbedingter_Strahlenbelastung}}</p>
              <h3>11. Bei den betroffenen Personen handelt es sich um:</h3>
-             <p>{{jsonKohorte.betroffenen_Personen2}}</p>
+             <p v-for="(item, index) in jsonKohorte.betroffenen_Personen2" :key="index">{{item}}</p>
              <h3>12. Besteht ein Versicherungsschutz?</h3>
              <p>{{jsonCharakterisierung.Versicherungsschutz}} <br> {{jsonCharakterisierung.Versicherungsträger_Police_Nummer}}</p>
              <h3>13. Wie erfolgt die Abrechnung der anfallenden Kosten für die durch Sie angeforderte Leistung?</h3>

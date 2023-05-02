@@ -45,12 +45,21 @@ Antragsart:	{{jsonAllgemeine.antragsart}}<br><br>
 Referenzantrag:	{{jsonAllgemeine.Referenzantrag}}<br><br>
 
 Beteiligte Institutionen:<br><br>
-{{jsonInstitution.institution}} <br><br>
+<p v-for="(item, index) in jsonInstitution" :key="index">{{item}}</p> <br><br>
 
 
 Beteiligte Personen<br><br>
-
-{{jsonBeteiligte.user}}<br><br>
+<div>
+                <p v-for="(item, index) in jsonBeteiligte.Funktion_im_Projekt" :key="index">{{item}}</p>
+                <p>{{jsonBeteiligte.Akademischer_Titel}}</p>
+                <p>{{jsonBeteiligte.Vorname}} </p>
+                <p>{{jsonBeteiligte.Nachname}}</p>
+                <p>{{jsonBeteiligte.E_Mail}}</p>
+                <p>{{jsonBeteiligte.Telefonnummer}}</p>
+                <p>{{jsonBeteiligte.Institution}}</p>
+                <p>{{jsonBeteiligte.Abteilung}}</p>
+                <p>{{jsonBeteiligte.Funktion_in_der_Abteilung}} </p>                
+            </div><br><br>
 <br>
 Projektlaufzeit: {{jsonAllgemeine.Projektlaufzeit}} Monat(e)<br><br>
 
@@ -59,9 +68,9 @@ Projektlaufzeit: {{jsonAllgemeine.Projektlaufzeit}} Monat(e)<br><br>
 Art der Datennutzung: {{jsonAllgemeine.art_der_Datennutzung}}<br>
 
 Kohorte Beschreibung:<br>
-Bei den betroffenen Personen handelt es sich um: {{jsonKohorte.betroffenen_Personen1}} <br>
+Bei den betroffenen Personen handelt es sich um: <p v-for="(item, index) in jsonKohorte.betroffenen_Personen2" :key="index">  {{item}} <br></p>
 {{jsonKohorte.Sonstige_Spezifizierung}} <br>
-Bei den betroffenen Personen handelt es sich um: {{jsonKohorte.betroffenen_Personen2}}<br>
+Bei den betroffenen Personen handelt es sich um:<p v-for="(item, index) in jsonKohorte.betroffenen_Personen2" :key="index"> {{item}}<br></p>
 Zeitraum der Datenerfassung: {{jsonKohorte.Zeitraum_der_Datenerfassung}}<br>
 Die Kohorte ist folgendermaßen definiert: {{jsonKohorte.Definitionskriterien}}<br>
 Folgende Einschlusskriterien sind definiert: {{jsonKohorte.Einschlusskriterien}}<br>

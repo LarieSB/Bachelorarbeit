@@ -5,48 +5,31 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
 import { FormKit } from '@formkit/vue';
-import { FormKitIcon } from '@formkit/vue'
-import { camel2title, axios } from '@/_helpers/utils.js'
-import useSteps from '@/_helpers/useSteps.js'
 import add_id_Daten from './add_id_Daten.vue';
 import add_nicht_id_Daten from './add_nicht_id_Daten.vue';
 import Add_externe_Daten from './Add_externe_Daten.vue';
 import { ref, reactive } from 'vue'
-import {useIDDaten} from '@/store';
-import {useNichtidDaten} from '@/store';
-import {useExterneDaten} from '@/store';
-import Modal from './Modal.vue';
+import {useBenötigte} from '@/store';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
 
 const date_rule = [['date_before', new Date(Date.now())]]
-// NEW: submit handler, which posts to our fake backend.
-const submitted = ref(false)
-const viewModal1 =ref(false)
-const viewModal2 =ref(false)
-const viewModal3 =ref(false)
 
-const store = useIDDaten()
-// store.set_Einwilligung(value)
-console.log("ici", store)
 
-const store1 = useNichtidDaten()
-// store.set_Einwilligung(value)
-console.log("ici", store1)
+const state = reactive({
+  idDaten: JSON.parse(localStorage.getItem('IDDaten')),
+  nichtidDaten: JSON.parse(localStorage.getItem('nichtidDaten')),
+  externeDaten: JSON.parse(localStorage.getItem('externeDaten'))
+})
 
-const store2 = useExterneDaten()
-// store.set_Einwilligung(value)
-console.log("ici", store2)
-
+const store= useBenötigte()
 const SubmitForm = () => {
-  console.log(router)
-  if(store.status === false){
-    router.push({name: 'Einwilligung'})
-  }
-  // store.set_beteiligte(state)
-}
-// console.log("state", state)
+ store.set_benötigte(state)
+ if(store.status==true){
+      router.push({name: 'Einwilligung'})
+ }}
+
 
 </script>
 
@@ -61,32 +44,20 @@ const SubmitForm = () => {
  
 <label for="betroffenen_Personen1">Personenbezogene identifizierende Daten<span class="text-red-300">*</span></label>
  <br>
- <button class="foo bar" type="button" @click="viewModal1 = true">add new identifizierende Daten</button>
-
-<Modal :show="viewModal1" @close="viewModal1 = false">
  <add_id_Daten/>
-</Modal>
  <br>   
 <br>
 <br>
 <label for="betroffenen_Personen1">Nicht-Identifizierende Daten<span class="text-red-300">*</span></label>
 <br>
-<button class="foo bar" type="button" @click="viewModal2 = true">add new Nicht-Identifizierende Daten</button>
-
-<Modal :show="viewModal2" @close="viewModal2 = false">
- <add_nicht_id_Daten/>
-</Modal>
+<add_nicht_id_Daten/>
 <br>
 <br>
 <br>
 <label for="betroffenen_Personen1">Externe Daten<span class="text-red-300">*</span></label>
 <br>
+<Add_externe_Daten/>
 
-<button class="foo bar" type="button" @click="viewModal3 = true">add new externe Daten</button>
-
-<Modal :show="viewModal3" @close="viewModal3 = false">
- <Add_externe_Daten/>
-</Modal>
 <br>  
 <br>  
 <FormKit type="button" @click="SubmitForm" label="Speichern und weiter" />

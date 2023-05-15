@@ -15,20 +15,21 @@ export const useIDDaten = defineStore({
     },
     actions: {
         set_iDDaten(iDDaten) {
-            const data = JSON.parse(localStorage.getItem('IDDaten'))
+            const data = JSON.parse(localStorage.getItem('iDDaten'))
             if (data) {
                 this.IDDaten = [...new Set([...data, ...[iDDaten]])]
             } else {
                 console.log('data is null', iDDaten)
                 this.IDDaten = [iDDaten]
             }
-            localStorage.setItem('IDDaten', JSON.stringify(this.IDDaten))
-            console.log(this.router)
+            console.log(this.IDDaten)
+            localStorage.setItem('iDDaten', JSON.stringify(this.IDDaten))
         },
 
         async removeIDDaten(index){
             this.IDDaten.splice(index, 1)
-            localStorage.setItem('IDDaten', JSON.stringify(this.IDDaten))
+            localStorage.setItem('iDDaten', JSON.stringify(this.IDDaten))
+            console.log(this.router)
         }
     } ,
 

@@ -18,19 +18,30 @@
             <p>3. Es handelt sich um eine {{jsonCharakterisierung.Studientyp_örtlich}} Studie</p>
            <p> Es handelt sich um eine rein retrospektive Datenerhebung: {{jsonCharakterisierung.rein_retrospektive_Datenerhebung}} </p>
             <p>4. Beteiligte Personnen</p>
-            <div>
-                <p v-for="(item, index) in jsonBeteiligte.Funktion_im_Projekt" :key="index">{{item}}</p>
-                <p>{{jsonBeteiligte.Akademischer_Titel}}</p>
-                <p>{{jsonBeteiligte.Vorname}} </p>
-                <p>{{jsonBeteiligte.Nachname}}</p>
-                <p>{{jsonBeteiligte.E_Mail}}</p>
-                <p>{{jsonBeteiligte.Telefonnummer}}</p>
-                <p>{{jsonBeteiligte.Institution}}</p>
-                <p>{{jsonBeteiligte.Abteilung}}</p>
-                <p>{{jsonBeteiligte.Funktion_in_der_Abteilung}} </p>                
-            </div>
+            <div v-for="(item, index) in jsonUsers" :key="index">
+Funktion im Projekt:<p v-for="(items, index) in item.Funktion_im_Projekt" :key="index"> {{items}} </p>
+<p>Akademischer Titel: {{item.Akademischer_Titel}}</p>
+<p>Vorname: {{item.Vorname}}</p>
+<p>Nachname: {{item.Nachname}}</p>
+<p>E_Mail: {{item.E_Mail}}</p>
+<p>Telefonnummer: {{item.Telefonnummer}}</p>
+<p>Institution: {{item.Institution}}</p>
+<p>Abteilung: {{item.Abteilung}}</p>
+<p>Funktion in der Abteilung: {{item.Funktion_in_der_Abteilung}}</p><br>
+</div> <br>
             <h3>5. Beteiligte Institutionen</h3>
-            <p v-for="(item, index) in jsonInstitution" :key="index">{{item}}</p>
+            <div v-for="(item, index) in jsonInstitution" :key="index">
+<p>Institut Name: {{item.Name2}}</p>
+<p>Abteilung: {{item.Abteilung}}</p>
+<p>Telefonnummer: {{item.Telefonnummer2}}</p>
+<p>Straße: {{item.Straße2}}</p>
+<p>Ort: {{item.Ort2}}</p>
+<p>Postleitzahl: {{item.Postleitzahl2}}</p>
+<p>Fachabteilung: {{item.Fachabteilung}}</p>
+<p>Sonstige Fachabteilung: {{item.Sonstige_Fachabteilung}}</p>
+<p>Schwerpunkt: {{item.Schwerpunkt}}</p>
+<p>Sonstige Schwerpunkt: {{item.Sonstige_Schwerpunkt}}</p><br>
+</div> <br>
             <h3>6.	Geplanter Studienbeginn und voraussichtliches Studienende, inkl. Nachbeobachtungs- und Auswertungszeitraum: </h3>
             <p>Von {{jsonAllgemeine.Geplanter_Studienbeginn}} bis {{jsonAllgemeine.voraussichtliches_Studienende}}</p>
             <h3>7.	Die erfassten Daten stammen aus dem folgenden Zeitraum (retrospektiv) bzw. werden im folgenden Zeitraum erhoben (prospektiv):  </h3>
@@ -104,7 +115,9 @@ export default{
         dataNutzungsordnung: null,
         jsonNutzungsordnung: null,
        dataRechnung: null,
-        jsonRechnung: null
+        jsonRechnung: null,
+        dataUsers: null,
+        jsonUsers: null
         }
     },
 
@@ -176,6 +189,9 @@ export default{
         //fetch data Rechnung
         this.dataRechnung = localStorage.getItem('rechnung')
         this.jsonRechnung= JSON.parse(this.dataRechnung)
+         //fetch data User
+         this.dataUsers = localStorage.getItem('users')
+        this.jsonUsers= JSON.parse(this.dataUsers)
     },
 }
 </script>

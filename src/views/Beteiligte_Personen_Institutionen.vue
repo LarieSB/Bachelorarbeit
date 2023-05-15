@@ -232,7 +232,7 @@ const position_in_der_Studie = [
       <h1 style="font-size: 20px;"><strong>Beteiligte Institutionen</strong></h1>
       <br>
       <br>
-     <button class="foo bar" type="button" @click="viewModal = true">add new Institution</button>
+     
       <table>
         <tr>
           <th>#</th>
@@ -267,10 +267,9 @@ const position_in_der_Studie = [
         </tr>
 
       </table>
-      <!-- {{ storeInstitution.get_institution }} -->
-      <Modal :show="viewModal" @close="viewModal = false">
+    
         <add_institution />
-      </Modal>
+     
       <br>
       <br>
       <FormKit v-if="dataPerson.length > 0" type="button" @click="SubmitForm"

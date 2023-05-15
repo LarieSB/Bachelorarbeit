@@ -141,7 +141,7 @@ const SubmitForm = () => {
           </Popper>
           <label for="Art_der_Einreichung">Art der Einreichung(Ethikantrag) <span class="text-red-300">*</span></label>
           </li>
-          <FormKit type="select" v-model="state.art_der_Datennutzung" name="art_der_Datennutzung"
+          <FormKit type="select" v-model="state.Art_der_Einreichung" name="Art_der_Einreichung"
             placeholder="select one option" :options="Art_der_Einreichung" />
         </div>
 

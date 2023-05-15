@@ -99,25 +99,17 @@ Theodor-Stern-Kai 7 <br>
 </p>
 <h2>2.4 Organisatorische Abhängigkeiten</h2><br>
 <h3>2.4.1 Forschungsteam</h3><br>
-
-<table class= "border">
-  <tr>
-    <tr>
-    <th>Name</th>
-
-    <th>Position in der Klinik/Fachbereich/Institut</th>
-
-    <th>Rolle im Forschungsteam</th>
-  </tr>
-  
-  <tr>
-    <td>{{jsonBeteiligte.Akademischer_Titel}} <br> {{jsonBeteiligte.Vorname}}{{jsonBeteiligte.Nachname}} <br>{{jsonBeteiligte.E_Mail}} <br>{{jsonBeteiligte.Telefonnummer}}</td>
-    <td>{{jsonBeteiligte.Funktion_in_der_Abteilung}} <br>{{jsonBeteiligte.Abteilung}} <br>{{jsonBeteiligte.Institution}}</td>
-    <td>{{jsonBeteiligte.Funktion_im_Projekt}}</td>
-   </tr>
-  </tr>
-</table>
-<br>
+<div v-for="(item, index) in jsonUsers" :key="index">
+Funktion im Projekt:<p v-for="(items, index) in item.Funktion_im_Projekt" :key="index"> {{items}} </p>
+<p>Akademischer Titel: {{item.Akademischer_Titel}}</p>
+<p>Vorname: {{item.Vorname}}</p>
+<p>Nachname: {{item.Nachname}}</p>
+<p>E_Mail: {{item.E_Mail}}</p>
+<p>Telefonnummer: {{item.Telefonnummer}}</p>
+<p>Institution: {{item.Institution}}</p>
+<p>Abteilung: {{item.Abteilung}}</p>
+<p>Funktion in der Abteilung: {{item.Funktion_in_der_Abteilung}}</p><br>
+</div> <br>
 <h3>2.4.2 Datenintegrationszentrum</h3>
 <p>Das Datenintegrationszentrum ist eine Abteilung des Dezernat 7 (Informations- und Kommunikations¬technologie). Es recherchiert die Daten aus den Patienteninformationssystemen, die strukturiert erhoben werden können und für die Studie benötigt werden. Es organisiert die Erstellung und Übermittlung der Pseudonymisierungsliste für die hier beschriebene retrospektive Studie.
 Die Rahmenbedingungen sind im <strong><a href="Datenschutzkonzept des Datenintegrationszentrums">Datenschutzkonzept des Datenintegrationszentrums</a></strong> dargestellt.
@@ -128,7 +120,7 @@ Die Aufgabe und damit einhergehenden Verpflichtungen der Treuhandstelle sind im 
 </p> 
 
 <h3>2.5 Finanzierung der Studie</h3><br>
-Es erfolgt eine finanzierung der Studie durch {{Finanzierung_der_Studie}} <br>
+Es erfolgt eine finanzierung der Studie durch {{jsonRechnung.Finanzierung_der_Studie}} <br>
 {{jsonRechnung.Angaben_zur_externen_Finanzierung}} <br><br>
 
 <h2>3.	Datenschutzrelevante Rahmenbedingungen</h2><br>
@@ -143,13 +135,37 @@ Das Forschungsinteresse für die Beantwortung der {{jsonHintergrund.Fragestellun
 
 <h3>3.2 Umfang der Verarbeitung von Daten für die Studie</h3><br>
 
-<h4>3.2.1 Betroffene Personen</h4>
-<p>Für die Studie werden Daten folgender Personengruppen erhoben:
-{{jsonIDDaten}} <br>
+<h4>3.2.1 Betroffene Personen</h4><br>
+<p>Für die Studie werden Daten folgender Personengruppen <br>
+<h3>Identifierende Daten</h3><br>
+    <div v-for="(item, index) in jsonIDDaten" :key="index">
+    <p>Bezeichnung: {{ item.Bezeichnung }}</p>
+      <p>Begründung: {{ item.Begründung1 }}</p>
+      <p>Die Daten stammen aus: {{ item.Woher_stammen_die_Daten }}</p>
+      <p>Die Daten wurden von: {{ item.Wer_erhebt }} erhebt</p>
+ <br>
+</div>
 <br>
-{{jsonNichtidDaten}} <br>
+<h3>Nicht Identitizierende Daten</h3><br>
+<div v-for="(item, index) in jsonNichtidDaten" :key="index">
+    <p>Bezeichnung: {{ item.Bezeichnung }}</p>
+      <p>Begründung: {{ item.Spezifizierung }}</p>
+      <p>Die Daten stammen aus: {{ item.Woher_stammen_die_Daten }}</p>
+      <p>Die Daten befinden sich auf: {{ item.Wo_genau }}</p>
+      <p>Die Daten wurden von: {{ item.Wer_erhebt }} erhebt</p>
+ <br>
+</div> 
 <br>
-{{jsonExterneDaten}}</p> <br>
+<h3>Externe Daten</h3><br>
+<div v-for="(item, index) in jsonExterneDaten" :key="index">
+    <p>Bezeichnung: {{ item.Bemerkung }}</p>
+      <p>Begründung: {{ item.Bezeichnung }}</p>
+      <p>Die Daten stammen aus: {{ item.Spezifizierung }}</p>
+      <p>Die Daten wurden von: {{ item.Wer_erhebt }} erhebt</p>
+      <p>Die Daten stammen aus: {{ item.Woher_stammen_die_Daten }}</p>
+ <br>
+</div>
+</p> <br>
 <p> Bei den Personen handelt es sich um <p v-for="(item, index) in jsonKohorte.betroffenen_Personen2" :key="index">{{item}}</p> im Sinne der EU-DSGVO. </p>
 <br>
 <h4>3.2.2 Kohorte und Ein- und Ausschlusskriterien</h4>
@@ -358,7 +374,9 @@ export default{
         dataNutzungsordnung: null,
         jsonNutzungsordnung: null,
        dataRechnung: null,
-        jsonRechnung: null
+        jsonRechnung: null,
+        dataUsers: null,
+        jsonUsers: null
         }
     },
 
@@ -430,6 +448,9 @@ export default{
         //fetch data Rechnung
         this.dataRechnung = localStorage.getItem('rechnung')
         this.jsonRechnung= JSON.parse(this.dataRechnung)
+        //fetch data User
+        this.dataUsers = localStorage.getItem('users')
+        this.jsonUsers= JSON.parse(this.dataUsers)
     },
 }
 </script>

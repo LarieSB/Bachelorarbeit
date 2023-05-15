@@ -18,8 +18,7 @@ ________________________________________<br><br>
 Angelegt am: {{jsonAllgemeine.Datum}}<br><br>
 
 <h2>I- Fragestellung</h2> <br>
-Projekttitel:<br>
-{{jsonAllgemeine.Projekttitel}}<br>
+Projekttitel: {{jsonAllgemeine.Projekttitel}}<br>
 Hintergrund:<br>
 {{jsonHintergrund.Hintergrund}}<br><br>
 Begründung der Machbarkeit:<br>
@@ -44,23 +43,33 @@ Mögliche Schlußfolgerungen:<br>
 Antragsart:	{{jsonAllgemeine.antragsart}}<br><br>
 Referenzantrag:	{{jsonAllgemeine.Referenzantrag}}<br><br>
 
-Beteiligte Institutionen:<br><br>
-<p v-for="(item, index) in jsonInstitution" :key="index">{{item}}</p> <br><br>
+Beteiligte Institutionen<br>
+<div v-for="(item, index) in jsonInstitution" :key="index">
+<p>Institut Name: {{item.Name2}}</p>
+<p>Abteilung: {{item.Abteilung}}</p>
+<p>Telefonnummer: {{item.Telefonnummer2}}</p>
+<p>Straße: {{item.Straße2}}</p>
+<p>Ort: {{item.Ort2}}</p>
+<p>Postleitzahl: {{item.Postleitzahl2}}</p>
+<p>Fachabteilung: {{item.Fachabteilung}}</p>
+<p>Sonstige Fachabteilung: {{item.Sonstige_Fachabteilung}}</p>
+<p>Schwerpunkt: {{item.Schwerpunkt}}</p>
+<p>Sonstige Schwerpunkt: {{item.Sonstige_Schwerpunkt}}</p><br>
+</div> <br><br>
 
 
 Beteiligte Personen<br><br>
-<div>
-                <p v-for="(item, index) in jsonBeteiligte.Funktion_im_Projekt" :key="index">{{item}}</p>
-                <p>{{jsonBeteiligte.Akademischer_Titel}}</p>
-                <p>{{jsonBeteiligte.Vorname}} </p>
-                <p>{{jsonBeteiligte.Nachname}}</p>
-                <p>{{jsonBeteiligte.E_Mail}}</p>
-                <p>{{jsonBeteiligte.Telefonnummer}}</p>
-                <p>{{jsonBeteiligte.Institution}}</p>
-                <p>{{jsonBeteiligte.Abteilung}}</p>
-                <p>{{jsonBeteiligte.Funktion_in_der_Abteilung}} </p>                
-            </div><br><br>
-<br>
+<div v-for="(item, index) in jsonUsers" :key="index">
+Funktion im Projekt:<p v-for="(items, index) in item.Funktion_im_Projekt" :key="index"> {{items}} </p>
+<p>Akademischer Titel: {{item.Akademischer_Titel}}</p>
+<p>Vorname: {{item.Vorname}}</p>
+<p>Nachname: {{item.Nachname}}</p>
+<p>E_Mail: {{item.E_Mail}}</p>
+<p>Telefonnummer: {{item.Telefonnummer}}</p>
+<p>Institution: {{item.Institution}}</p>
+<p>Abteilung: {{item.Abteilung}}</p>
+<p>Funktion in der Abteilung: {{item.Funktion_in_der_Abteilung}}</p><br>
+</div> <br>
 Projektlaufzeit: {{jsonAllgemeine.Projektlaufzeit}} Monat(e)<br><br>
 
 <h2>III- Beantragte Daten</h2><br><br>
@@ -68,7 +77,7 @@ Projektlaufzeit: {{jsonAllgemeine.Projektlaufzeit}} Monat(e)<br><br>
 Art der Datennutzung: {{jsonAllgemeine.art_der_Datennutzung}}<br>
 
 Kohorte Beschreibung:<br>
-Bei den betroffenen Personen handelt es sich um: <p v-for="(item, index) in jsonKohorte.betroffenen_Personen2" :key="index">  {{item}} <br></p>
+Bei den betroffenen Personen handelt es sich um: <p v-for="(item, index) in jsonKohorte.betroffenen_Personen2" :key="index">  {{item}}</p>
 {{jsonKohorte.Sonstige_Spezifizierung}} <br>
 Bei den betroffenen Personen handelt es sich um:<p v-for="(item, index) in jsonKohorte.betroffenen_Personen2" :key="index"> {{item}}<br></p>
 Zeitraum der Datenerfassung: {{jsonKohorte.Zeitraum_der_Datenerfassung}}<br>
@@ -130,7 +139,9 @@ export default{
         dataNutzungsordnung: null,
         jsonNutzungsordnung: null,
        dataRechnung: null,
-        jsonRechnung: null
+        jsonRechnung: null,
+        dataUsers: null,
+        jsonUsers: null
         }
     },
 
@@ -202,6 +213,9 @@ export default{
         //fetch data Rechnung
         this.dataRechnung = localStorage.getItem('rechnung')
         this.jsonRechnung= JSON.parse(this.dataRechnung)
+        //fetch data User
+        this.dataUsers = localStorage.getItem('users')
+        this.jsonUsers= JSON.parse(this.dataUsers)
     },
 }
 </script>

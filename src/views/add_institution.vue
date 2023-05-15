@@ -7,6 +7,7 @@
 import { FormKit } from '@formkit/vue';
 import { ref, reactive } from 'vue'
 import {useInstitution} from '@/store';
+import Modal from './Modal.vue';
 
 const store = useInstitution()
 
@@ -31,9 +32,10 @@ const state = reactive ({
 
 const SubmitForm = () => {
   store.set_institution(state)
+  institutmodal.value = false
 }
 
-
+const institutmodal = ref(false)
 
 const Fachabteilung = [
   { label: 'Herzchirurgie', value: 'Herzchirurgie' },
@@ -95,6 +97,9 @@ const Schwerpunkt = [
 </script>
 
 <template>
+  <div>
+    <button class="foo bar" type="button" @click="institutmodal = true">add new Institution</button>
+    <Modal :show="institutmodal" @close="institutmodal=false">
   <h1 style="font-size: 29px;">Add Beteiligte Institution</h1>
   <FormKit
   type="form"
@@ -211,5 +216,7 @@ const Schwerpunkt = [
     <FormKit type="button" @click="SubmitForm" label="Submit Application" />
    
     
-</FormKit>  
+</FormKit> 
+</Modal>
+</div> 
 </template>
